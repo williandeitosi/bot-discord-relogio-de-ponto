@@ -5,6 +5,7 @@ const envSchema = z.object({
   APPLICATION_ID: z.coerce.number(),
   PUBLIC_KEY: z.string(),
   BOT_TOKEN: z.string(),
+  TIMEZONE: z.string(),
 });
 
 const _env = envSchema.safeParse(process.env);
