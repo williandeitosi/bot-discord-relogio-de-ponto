@@ -11,6 +11,7 @@ import { RegisterUserUseCase } from "./application/use-cases/register-user";
 import * as painelCommand from "./commands/register-panel";
 import { env } from "./env";
 import { PrismaClient } from "./generated/prisma/client";
+import { handleButtonInteraction } from "./interactions/handle-button-interaction";
 import { PrismaPunchRepository } from "./repositories/database/prisma/prisma-punch-repository";
 import { PrismaUserRepository } from "./repositories/database/prisma/prisma-user-repository";
 import { createStyledPanel } from "./utils/create-panel";
@@ -47,26 +48,8 @@ client.on(Events.InteractionCreate, async (interaction: Interaction) => {
     }
   }
 
-  if (!interaction.isButton()) return;
-
-  const discordId = interaction.user.id;
-  const username = interaction.user.username;
-  const type = interaction.customId as any;
-
-  try {
-    const user = await registerUser.execute({ discordId, name: username });
-    await registerPunch.execute(user.id, type);
-    await interaction.reply({
-      content: `Registrado: ${type}`,
-      ephemeral: true,
-    });
-  } catch (err) {
-    if (err instanceof Error) {
-      await interaction.reply({
-        content: `Erro: ${err.message}`,
-        ephemeral: true,
-      });
-    }
+  if (interaction.isButton()) {
+    return handleButtonInteraction(interaction, registerUser, registerPunch);
   }
 });
 

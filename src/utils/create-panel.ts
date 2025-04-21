@@ -14,17 +14,17 @@ export function createStyledPanel() {
   // Primeira linha de botões
   const row1 = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
-      .setCustomId("entrada")
+      .setCustomId("confirmar:entrada")
       .setLabel("🟢 Entrada")
       .setStyle(ButtonStyle.Secondary),
 
     new ButtonBuilder()
-      .setCustomId("almoco")
+      .setCustomId("confirmar:almoco")
       .setLabel("🍽️ Almoço")
       .setStyle(ButtonStyle.Secondary),
 
     new ButtonBuilder()
-      .setCustomId("saida")
+      .setCustomId("confirmar:saida")
       .setLabel("🔴 Saída")
       .setStyle(ButtonStyle.Secondary)
   );
@@ -32,12 +32,12 @@ export function createStyledPanel() {
   // Segunda linha de botões
   const row2 = new ActionRowBuilder<ButtonBuilder>().addComponents(
     new ButtonBuilder()
-      .setCustomId("pausa")
+      .setCustomId("confirmar:pausa")
       .setLabel("☕ Pausa")
       .setStyle(ButtonStyle.Secondary),
 
     new ButtonBuilder()
-      .setCustomId("retorno")
+      .setCustomId("confirmar:retorno")
       .setLabel("🔄 Retorno")
       .setStyle(ButtonStyle.Secondary)
   );
